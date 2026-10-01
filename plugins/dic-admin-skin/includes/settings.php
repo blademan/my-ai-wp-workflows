@@ -75,7 +75,7 @@ function dic_admin_skin_settings_assets( string $hook ): void {
 		'dic-admin-skin-settings',
 		DIC_ADMIN_SKIN_URL . 'assets/settings.js',
 		array( 'jquery', 'wp-color-picker' ),
-		DIC_ADMIN_SKIN_VERSION,
+		dic_admin_skin_asset_ver( 'assets/settings.js' ),
 		true
 	);
 	wp_localize_script(

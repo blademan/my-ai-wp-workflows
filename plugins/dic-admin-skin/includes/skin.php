@@ -42,13 +42,13 @@ function dic_admin_skin_print_mode_script(): void {
 function dic_admin_skin_enqueue(): void {
 	$opts = dic_admin_skin_options();
 
-	wp_enqueue_style( 'dic-admin-skin', DIC_ADMIN_SKIN_URL . 'assets/admin-skin.css', array(), DIC_ADMIN_SKIN_VERSION );
+	wp_enqueue_style( 'dic-admin-skin', DIC_ADMIN_SKIN_URL . 'assets/admin-skin.css', array(), dic_admin_skin_asset_ver( 'assets/admin-skin.css' ) );
 	wp_add_inline_style(
 		'dic-admin-skin',
 		':root{--dic-brand:' . sanitize_hex_color( $opts['brand_color'] ) . ';}'
 	);
 
-	wp_enqueue_script( 'dic-admin-skin', DIC_ADMIN_SKIN_URL . 'assets/admin-skin.js', array(), DIC_ADMIN_SKIN_VERSION, true );
+	wp_enqueue_script( 'dic-admin-skin', DIC_ADMIN_SKIN_URL . 'assets/admin-skin.js', array(), dic_admin_skin_asset_ver( 'assets/admin-skin.js' ), true );
 	wp_add_inline_script(
 		'dic-admin-skin',
 		'window.dicAdminSkin = ' . wp_json_encode(

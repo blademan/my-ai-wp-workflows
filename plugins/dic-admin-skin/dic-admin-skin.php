@@ -26,6 +26,17 @@ require_once DIC_ADMIN_SKIN_DIR . 'includes/skin.php';
 require_once DIC_ADMIN_SKIN_DIR . 'includes/branding.php';
 
 /**
+ * Cache-busting version for an asset: plugin version + file modification time,
+ * so a changed file always gets a new URL (the server caches static files for years).
+ *
+ * @param string $relative Path relative to the plugin root, e.g. 'assets/admin-skin.css'.
+ */
+function dic_admin_skin_asset_ver( string $relative ): string {
+	$mtime = @filemtime( DIC_ADMIN_SKIN_DIR . $relative ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged
+	return DIC_ADMIN_SKIN_VERSION . ( $mtime ? '.' . $mtime : '' );
+}
+
+/**
  * Default option values.
  *
  * @return array<string, mixed>

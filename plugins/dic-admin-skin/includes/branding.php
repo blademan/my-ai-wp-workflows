@@ -19,7 +19,7 @@ add_action( 'admin_init', 'dic_admin_skin_hide_nags' );
 function dic_admin_skin_login_assets(): void {
 	$opts = dic_admin_skin_options();
 
-	wp_enqueue_style( 'dic-admin-skin-login', DIC_ADMIN_SKIN_URL . 'assets/login.css', array(), DIC_ADMIN_SKIN_VERSION );
+	wp_enqueue_style( 'dic-admin-skin-login', DIC_ADMIN_SKIN_URL . 'assets/login.css', array(), dic_admin_skin_asset_ver( 'assets/login.css' ) );
 
 	$css = ':root{--dic-brand:' . sanitize_hex_color( $opts['brand_color'] ) . ';--dic-login-bg:' . sanitize_hex_color( $opts['login_bg'] ) . ';}';
 
