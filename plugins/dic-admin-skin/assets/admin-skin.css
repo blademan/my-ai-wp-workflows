@@ -115,7 +115,7 @@ body.dic-skin #wpadminbar .ab-top-menu > li:hover > .ab-item,
 body.dic-skin #wpadminbar .ab-top-menu > li.hover > .ab-item,
 body.dic-skin #wpadminbar .ab-top-menu > li > .ab-item:focus {
 	background: var(--dic-bg);
-	color: var(--dic-brand);
+	color: var(--dic-link);
 }
 
 body.dic-skin #wpadminbar .ab-sub-wrapper,
