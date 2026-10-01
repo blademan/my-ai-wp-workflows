@@ -63,6 +63,18 @@ body.login input[type="password"] {
 	box-shadow: none;
 }
 
+body.login input[type="checkbox"] {
+	background: var(--dic-card);
+	border: 1px solid var(--dic-muted);
+	box-shadow: none;
+}
+
+/* Core draws a white tick, so the checked box must be filled. */
+body.login input[type="checkbox"]:checked {
+	background: var(--dic-brand);
+	border-color: var(--dic-brand);
+}
+
 body.login input:focus {
 	border-color: var(--dic-brand);
 	box-shadow: 0 0 0 1px var(--dic-brand);
