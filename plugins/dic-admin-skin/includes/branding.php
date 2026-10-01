@@ -15,6 +15,7 @@ add_action( 'admin_bar_menu', 'dic_admin_skin_admin_bar', 999 );
 add_filter( 'admin_footer_text', 'dic_admin_skin_footer_text', 99 );
 add_filter( 'update_footer', 'dic_admin_skin_update_footer', 99 );
 add_action( 'admin_init', 'dic_admin_skin_hide_nags' );
+add_filter( 'wp_get_update_data', 'dic_admin_skin_hide_update_counts', 99 );
 
 function dic_admin_skin_login_assets(): void {
 	$opts = dic_admin_skin_options();
@@ -130,6 +131,25 @@ function dic_admin_skin_footer_text( string $text ): string {
  */
 function dic_admin_skin_update_footer( string $text ): string {
 	return dic_admin_skin_is_client_whitelabel() ? '' : $text;
+}
+
+/**
+ * Zero the update counts for client users. The menu badges (Dashboard > Updates,
+ * Plugins, Themes) and the admin bar updates icon all read wp_get_update_data(),
+ * so one filter hides every counter. The Updates screen itself stays reachable.
+ *
+ * @param array<string, mixed> $data Update data with 'counts' and 'title'.
+ * @return array<string, mixed>
+ */
+function dic_admin_skin_hide_update_counts( $data ) {
+	if ( ! is_array( $data ) || ! dic_admin_skin_is_client_whitelabel() ) {
+		return $data;
+	}
+	if ( isset( $data['counts'] ) && is_array( $data['counts'] ) ) {
+		$data['counts'] = array_fill_keys( array_keys( $data['counts'] ), 0 );
+	}
+	$data['title'] = '';
+	return $data;
 }
 
 function dic_admin_skin_hide_nags(): void {

@@ -18,7 +18,7 @@ Copy the `dic-admin-skin/` folder to `wp-content/plugins/` (or zip it) and activ
 | Dark mode | Per-user (`dic_admin_skin_mode` user meta): Auto / Light / Dark, toggled from the admin bar. A tiny inline script in `<head>` sets the theme before CSS paints, so there is no flash. |
 | Login | Logo, background colour, card layout, follows system dark mode. Logo links to the home page. |
 | Dashboard | Optional: removes the default widgets and registers one Site status widget. |
-| White-label | Optional: hides WP logo, footer credit and update nags for non-agency users. |
+| White-label | Optional: hides WP logo, footer credit, update notices and update count badges for non-agency users. |
 
 ## Decisions
 
@@ -48,6 +48,7 @@ Copy the `dic-admin-skin/` folder to `wp-content/plugins/` (or zip it) and activ
 ## Changelog
 
 ### 1.0.1
+- White-label also hides update count badges (menu and admin bar) for client users.
 - Dark mode fixes: visible row actions, dark plugin rows, Screen Options/Help buttons, checkboxes; lighter link colour for contrast.
 
 ### 1.0.0
