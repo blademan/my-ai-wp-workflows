@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Admin Skin
  * Description:       Clean, professional wp-admin restyle with light/dark mode, custom login screen and optional white-labelling for client users.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.9
  * Requires PHP:      8.2
  * Author:            Design in DC
@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'DIC_ADMIN_SKIN_VERSION', '1.0.0' );
+define( 'DIC_ADMIN_SKIN_VERSION', '1.0.1' );
 define( 'DIC_ADMIN_SKIN_FILE', __FILE__ );
 define( 'DIC_ADMIN_SKIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'DIC_ADMIN_SKIN_URL', plugin_dir_url( __FILE__ ) );

@@ -47,5 +47,8 @@ Copy the `dic-admin-skin/` folder to `wp-content/plugins/` (or zip it) and activ
 
 ## Changelog
 
+### 1.0.1
+- Dark mode fixes: visible row actions, dark plugin rows, Screen Options/Help buttons, checkboxes; lighter link colour for contrast.
+
 ### 1.0.0
 - Initial release.

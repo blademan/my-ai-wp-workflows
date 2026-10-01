@@ -14,6 +14,8 @@
 	--dic-radius: 10px;
 	--dic-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
 	--dic-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--dic-link: var(--dic-brand);
+	--dic-danger: #b32d2e;
 	--wp-admin-theme-color: var(--dic-brand);
 	--wp-admin-theme-color-darker-10: color-mix(in srgb, var(--dic-brand) 88%, #000);
 	--wp-admin-theme-color-darker-20: color-mix(in srgb, var(--dic-brand) 76%, #000);
@@ -26,6 +28,9 @@ html[data-dic-theme="dark"] {
 	--dic-muted: #9aa5b8;
 	--dic-border: #243044;
 	--dic-shadow: none;
+	/* Brand colour lightened so links keep >= 4.5:1 on dark surfaces. */
+	--dic-link: color-mix(in srgb, var(--dic-brand) 55%, #ffffff);
+	--dic-danger: #f87171;
 	color-scheme: dark;
 }
 
@@ -65,7 +70,7 @@ body.dic-skin #wpbody-content {
 }
 
 body.dic-skin a {
-	color: var(--dic-brand);
+	color: var(--dic-link);
 }
 
 body.dic-skin .wrap h1,
@@ -369,6 +374,80 @@ body.dic-skin .subsubsub a.current {
 body.dic-skin #wpfooter,
 body.dic-skin #wpfooter a {
 	color: var(--dic-muted);
+}
+
+/* Row actions, plugin rows, screen options, checkboxes ------------------- */
+body.dic-skin .row-actions,
+body.dic-skin .row-actions span,
+body.dic-skin .plugins .row-actions {
+	color: var(--dic-muted);
+}
+
+body.dic-skin .row-actions a,
+body.dic-skin .plugins .row-actions a {
+	color: var(--dic-link);
+}
+
+body.dic-skin .row-actions .delete a,
+body.dic-skin .row-actions .trash a,
+body.dic-skin .row-actions .spam a,
+body.dic-skin .plugins .row-actions .delete a,
+body.dic-skin .submitdelete {
+	color: var(--dic-danger);
+}
+
+body.dic-skin .plugins .active td,
+body.dic-skin .plugins .active th,
+body.dic-skin .plugins tr.active + tr.plugin-update-tr td {
+	background: color-mix(in srgb, var(--dic-brand) 9%, var(--dic-surface));
+	color: var(--dic-text);
+}
+
+body.dic-skin .plugins .inactive td,
+body.dic-skin .plugins .inactive th {
+	background: var(--dic-surface);
+	color: var(--dic-text);
+}
+
+body.dic-skin .plugins .active th.check-column {
+	border-left-color: var(--dic-brand);
+}
+
+body.dic-skin .plugins .plugin-title strong,
+body.dic-skin .plugins .plugin-description,
+body.dic-skin .plugins .plugin-version-author-uri {
+	color: var(--dic-text);
+}
+
+body.dic-skin #screen-meta,
+body.dic-skin #screen-meta-links .screen-meta-toggle {
+	background: var(--dic-surface);
+	border-color: var(--dic-border);
+}
+
+body.dic-skin #screen-meta-links .screen-meta-toggle .button {
+	background: var(--dic-surface);
+	color: var(--dic-text);
+	border-color: var(--dic-border);
+}
+
+body.dic-skin input[type="checkbox"],
+body.dic-skin input[type="radio"] {
+	background: var(--dic-surface);
+	border-color: var(--dic-muted);
+	box-shadow: none;
+}
+
+body.dic-skin input[type="checkbox"]:checked,
+body.dic-skin input[type="radio"]:checked {
+	border-color: var(--dic-brand);
+}
+
+body.dic-skin .page-title-action {
+	background: transparent;
+	color: var(--dic-link);
+	border-color: var(--dic-link);
+	border-radius: 8px;
 }
 
 /* Dashboard status widget ------------------------------------------------ */
