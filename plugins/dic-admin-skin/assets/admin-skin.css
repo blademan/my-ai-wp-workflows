@@ -456,6 +456,38 @@ body.dic-skin .page-title-action {
 	border-radius: 8px;
 }
 
+/* Settings screens: labels, notice text, colour picker ------------------- */
+body.dic-skin .form-table th,
+body.dic-skin .form-table td,
+body.dic-skin .form-table label,
+body.dic-skin .form-wrap label,
+body.dic-skin fieldset legend {
+	color: var(--dic-text);
+}
+
+body.dic-skin .notice p,
+body.dic-skin .notice li,
+body.dic-skin .notice .notice-title,
+body.dic-skin div.updated p,
+body.dic-skin div.error p {
+	color: var(--dic-text);
+}
+
+body.dic-skin .wp-picker-container .wp-color-result.button,
+body.dic-skin .wp-picker-container .wp-color-result.button .wp-color-result-text {
+	background-color: var(--dic-surface);
+	color: var(--dic-text);
+	border-color: var(--dic-border);
+}
+
+body.dic-skin .wp-picker-container .wp-color-result.button {
+	border-radius: 8px;
+}
+
+body.dic-skin .wp-picker-container .wp-color-result.button .color-alpha {
+	border-radius: 7px 0 0 7px;
+}
+
 /* Dashboard status widget ------------------------------------------------ */
 .dic-greeting {
 	margin: 0 0 12px;
