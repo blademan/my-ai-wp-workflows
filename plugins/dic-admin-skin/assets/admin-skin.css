@@ -438,9 +438,15 @@ body.dic-skin input[type="radio"] {
 	box-shadow: none;
 }
 
+/* Checked state: core draws a white tick/dot, so the box itself must be filled. */
 body.dic-skin input[type="checkbox"]:checked,
 body.dic-skin input[type="radio"]:checked {
+	background: var(--dic-brand);
 	border-color: var(--dic-brand);
+}
+
+body.dic-skin input[type="radio"]:checked::before {
+	background-color: #ffffff;
 }
 
 body.dic-skin .page-title-action {
