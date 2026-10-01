@@ -129,6 +129,22 @@ body.dic-skin #wpadminbar .ab-submenu .ab-item {
 	color: var(--dic-text) !important;
 }
 
+/* "Howdy" dropdown: core colours these with ID selectors for a dark bar. */
+body.dic-skin #wpadminbar #wp-admin-bar-user-info a,
+body.dic-skin #wpadminbar #wp-admin-bar-user-info .display-name {
+	color: var(--dic-text);
+}
+
+body.dic-skin #wpadminbar #wp-admin-bar-user-info .username {
+	color: var(--dic-muted);
+}
+
+body.dic-skin #wpadminbar .ab-submenu .ab-item:hover,
+body.dic-skin #wpadminbar .ab-submenu .ab-item:focus {
+	background: var(--dic-bg);
+	color: var(--dic-link) !important;
+}
+
 #wp-admin-bar-dic-mode-toggle .ab-icon:before {
 	content: "\f100"; /* dashicons-admin-appearance */
 	top: 2px;
