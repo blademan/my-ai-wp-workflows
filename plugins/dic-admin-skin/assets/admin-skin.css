@@ -430,9 +430,18 @@ body.dic-skin .plugins .active th.check-column {
 }
 
 body.dic-skin .plugins .plugin-title strong,
-body.dic-skin .plugins .plugin-description,
 body.dic-skin .plugins .plugin-version-author-uri {
 	color: var(--dic-text);
+}
+
+/* The description text rendered near-invisible in dark mode and no core rule in
+   list-tables/common/forms explains it, so force the colour here. */
+body.dic-skin .plugins .plugin-description,
+body.dic-skin .plugins .plugin-description p,
+body.dic-skin .plugins td.desc p,
+body.dic-skin .plugins .column-description p {
+	color: var(--dic-text) !important;
+	opacity: 1;
 }
 
 body.dic-skin #screen-meta,
