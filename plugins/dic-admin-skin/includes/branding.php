@@ -21,7 +21,7 @@ function dic_admin_skin_login_assets(): void {
 
 	wp_enqueue_style( 'dic-admin-skin-login', DIC_ADMIN_SKIN_URL . 'assets/login.css', array(), dic_admin_skin_asset_ver( 'assets/login.css' ) );
 
-	$css = ':root{--dic-brand:' . sanitize_hex_color( $opts['brand_color'] ) . ';--dic-login-bg:' . sanitize_hex_color( $opts['login_bg'] ) . ';}';
+	$css = ':root{--dic-brand:' . sanitize_hex_color( $opts['brand_color'] ) . ';--dic-login-bg-light:' . sanitize_hex_color( $opts['login_bg'] ) . ';}';
 
 	$logo = $opts['logo_id'] ? wp_get_attachment_image_url( (int) $opts['logo_id'], 'full' ) : '';
 	if ( $logo ) {

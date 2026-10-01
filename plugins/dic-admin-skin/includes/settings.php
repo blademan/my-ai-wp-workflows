@@ -118,7 +118,7 @@ function dic_admin_skin_render_settings_page(): void {
 					</td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="dic_login_bg"><?php esc_html_e( 'Login background', 'dic-admin-skin' ); ?></label></th>
+					<th scope="row"><label for="dic_login_bg"><?php esc_html_e( 'Login background (light mode)', 'dic-admin-skin' ); ?></label></th>
 					<td><input type="text" id="dic_login_bg" class="dic-color-field" name="<?php echo esc_attr( $name ); ?>[login_bg]" value="<?php echo esc_attr( $o['login_bg'] ); ?>" data-default-color="#f3f4f6"></td>
 				</tr>
 				<tr>
