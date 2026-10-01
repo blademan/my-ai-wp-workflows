@@ -1,0 +1,548 @@
+/*
+ * Admin Skin — wp-admin restyle.
+ * Strategy: override CSS custom properties and a small set of stable selectors only,
+ * so core admin redesigns (e.g. WP 7.0) break as little as possible. Re-test after upgrades.
+ */
+
+:root {
+	--dic-brand: #2563eb;
+	--dic-bg: #f4f5f7;
+	--dic-surface: #ffffff;
+	--dic-text: #111827;
+	--dic-muted: #5b6472;
+	--dic-border: #e3e6eb;
+	--dic-radius: 10px;
+	--dic-shadow: 0 1px 2px rgba(16, 24, 40, 0.06);
+	--dic-font: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	--dic-link: var(--dic-brand);
+	--dic-danger: #b32d2e;
+	--wp-admin-theme-color: var(--dic-brand);
+	--wp-admin-theme-color-darker-10: color-mix(in srgb, var(--dic-brand) 88%, #000);
+	--wp-admin-theme-color-darker-20: color-mix(in srgb, var(--dic-brand) 76%, #000);
+}
+
+html[data-dic-theme="dark"] {
+	--dic-bg: #0b0f17;
+	--dic-surface: #131a26;
+	--dic-text: #e6e9ef;
+	--dic-muted: #9aa5b8;
+	--dic-border: #243044;
+	--dic-shadow: none;
+	/* Brand colour lightened so links keep >= 4.5:1 on dark surfaces. */
+	--dic-link: color-mix(in srgb, var(--dic-brand) 55%, #ffffff);
+	--dic-danger: #f87171;
+	color-scheme: dark;
+}
+
+/* Sidebar tokens live on body so the light/dark sidebar class can switch them. */
+body.dic-sidebar-dark {
+	--dic-side-bg: #0f172a;
+	--dic-side-text: #cbd5e1;
+	--dic-side-hover: rgba(255, 255, 255, 0.07);
+	--dic-side-sub: #0b1220;
+}
+
+body.dic-sidebar-light {
+	--dic-side-bg: #ffffff;
+	--dic-side-text: #374151;
+	--dic-side-hover: rgba(17, 24, 39, 0.05);
+	--dic-side-sub: #f4f5f7;
+}
+
+html[data-dic-theme="dark"] body.dic-sidebar-light {
+	--dic-side-bg: #0f172a;
+	--dic-side-text: #cbd5e1;
+	--dic-side-hover: rgba(255, 255, 255, 0.07);
+	--dic-side-sub: #0b1220;
+}
+
+/* Base ------------------------------------------------------------------ */
+body.dic-skin,
+body.dic-skin #wpwrap,
+body.dic-skin #wpcontent {
+	background: var(--dic-bg);
+	color: var(--dic-text);
+	font-family: var(--dic-font);
+}
+
+body.dic-skin #wpbody-content {
+	padding-bottom: 40px;
+}
+
+body.dic-skin a {
+	color: var(--dic-link);
+}
+
+body.dic-skin .wrap h1,
+body.dic-skin .wrap h2 {
+	color: var(--dic-text);
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+body.dic-skin .wrap > h1.wp-heading-inline {
+	font-size: 24px;
+}
+
+body.dic-skin p.description,
+body.dic-skin .form-table td p.description {
+	color: var(--dic-muted);
+}
+
+body.dic-skin :focus-visible {
+	outline: 2px solid var(--dic-brand);
+	outline-offset: 2px;
+	box-shadow: none;
+}
+
+/* Top bar --------------------------------------------------------------- */
+body.dic-skin #wpadminbar {
+	background: var(--dic-surface);
+	border-bottom: 1px solid var(--dic-border);
+	color: var(--dic-text);
+}
+
+body.dic-skin #wpadminbar .ab-item,
+body.dic-skin #wpadminbar a.ab-item,
+body.dic-skin #wpadminbar > #wp-toolbar span.ab-label,
+body.dic-skin #wpadminbar > #wp-toolbar span.noticon,
+body.dic-skin #wpadminbar .ab-icon:before,
+body.dic-skin #wpadminbar #adminbarsearch:before {
+	color: var(--dic-text);
+}
+
+body.dic-skin #wpadminbar .ab-top-menu > li:hover > .ab-item,
+body.dic-skin #wpadminbar .ab-top-menu > li.hover > .ab-item,
+body.dic-skin #wpadminbar .ab-top-menu > li > .ab-item:focus {
+	background: var(--dic-bg);
+	color: var(--dic-link);
+}
+
+body.dic-skin #wpadminbar .ab-sub-wrapper,
+body.dic-skin #wpadminbar .menupop .ab-sub-wrapper {
+	background: var(--dic-surface);
+	border: 1px solid var(--dic-border);
+	border-radius: 0 0 var(--dic-radius) var(--dic-radius);
+}
+
+body.dic-skin #wpadminbar .ab-submenu .ab-item {
+	color: var(--dic-text) !important;
+}
+
+/* "Howdy" dropdown: core colours these with ID selectors for a dark bar. */
+body.dic-skin #wpadminbar #wp-admin-bar-user-info a,
+body.dic-skin #wpadminbar #wp-admin-bar-user-info .display-name {
+	color: var(--dic-text);
+}
+
+body.dic-skin #wpadminbar #wp-admin-bar-user-info .username {
+	color: var(--dic-muted);
+}
+
+body.dic-skin #wpadminbar .ab-submenu .ab-item:hover,
+body.dic-skin #wpadminbar .ab-submenu .ab-item:focus {
+	background: var(--dic-bg);
+	color: var(--dic-link) !important;
+}
+
+#wp-admin-bar-dic-mode-toggle .ab-icon:before {
+	content: "\f100"; /* dashicons-admin-appearance */
+	top: 2px;
+}
+
+/* Sidebar --------------------------------------------------------------- */
+body.dic-skin #adminmenuback,
+body.dic-skin #adminmenuwrap,
+body.dic-skin #adminmenu {
+	background: var(--dic-side-bg);
+}
+
+body.dic-skin.dic-sidebar-light #adminmenuback {
+	border-right: 1px solid var(--dic-border);
+}
+
+body.dic-skin #adminmenu a,
+body.dic-skin #adminmenu div.wp-menu-image:before {
+	color: var(--dic-side-text);
+}
+
+body.dic-skin #adminmenu li.menu-top {
+	margin: 2px 8px;
+	border-radius: 8px;
+}
+
+body.dic-skin #adminmenu li.menu-top:hover,
+body.dic-skin #adminmenu li.opensub > a.menu-top,
+body.dic-skin #adminmenu li > a.menu-top:focus {
+	background: var(--dic-side-hover);
+	color: var(--dic-side-text);
+	border-radius: 8px;
+}
+
+body.dic-skin #adminmenu li.wp-has-current-submenu > a.wp-has-current-submenu,
+body.dic-skin #adminmenu li.current > a.current,
+body.dic-skin #adminmenu .wp-has-current-submenu .wp-submenu .wp-submenu-head {
+	background: var(--dic-brand);
+	color: #ffffff;
+	border-radius: 8px;
+}
+
+body.dic-skin #adminmenu li.current a.menu-top div.wp-menu-image:before,
+body.dic-skin #adminmenu li.wp-has-current-submenu div.wp-menu-image:before,
+body.dic-skin #adminmenu li.current a.menu-top .wp-menu-name,
+body.dic-skin #adminmenu li.wp-has-current-submenu .wp-menu-name {
+	color: #ffffff;
+}
+
+body.dic-skin #adminmenu .wp-submenu,
+body.dic-skin #adminmenu li.wp-has-current-submenu .wp-submenu {
+	background: var(--dic-side-sub);
+	border-radius: 8px;
+}
+
+body.dic-skin #adminmenu .wp-submenu a {
+	color: var(--dic-side-text);
+}
+
+body.dic-skin #adminmenu .wp-submenu li.current a,
+body.dic-skin #adminmenu .wp-submenu a:hover {
+	color: var(--dic-brand);
+}
+
+body.dic-skin.dic-sidebar-dark #adminmenu .wp-submenu li.current a,
+body.dic-skin.dic-sidebar-dark #adminmenu .wp-submenu a:hover {
+	color: #ffffff;
+}
+
+body.dic-skin #collapse-button {
+	color: var(--dic-side-text);
+}
+
+body.dic-skin #adminmenu .awaiting-mod,
+body.dic-skin #adminmenu .update-plugins {
+	background: var(--dic-brand);
+	color: #ffffff;
+}
+
+/* Cards ------------------------------------------------------------------ */
+body.dic-skin .postbox,
+body.dic-skin .stuffbox,
+body.dic-skin .card,
+body.dic-skin #dashboard-widgets .postbox,
+body.dic-skin .welcome-panel {
+	background: var(--dic-surface);
+	border: 1px solid var(--dic-border);
+	border-radius: var(--dic-radius);
+	box-shadow: var(--dic-shadow);
+	color: var(--dic-text);
+}
+
+body.dic-skin .postbox .postbox-header {
+	border-bottom: 1px solid var(--dic-border);
+	border-radius: var(--dic-radius) var(--dic-radius) 0 0;
+}
+
+body.dic-skin .postbox-header .hndle {
+	font-weight: 600;
+	color: var(--dic-text);
+}
+
+/* Tables ----------------------------------------------------------------- */
+body.dic-skin .wp-list-table,
+body.dic-skin table.widefat {
+	background: var(--dic-surface);
+	border: 1px solid var(--dic-border);
+	border-radius: var(--dic-radius);
+	box-shadow: var(--dic-shadow);
+	border-collapse: separate;
+	border-spacing: 0;
+	overflow: hidden;
+	color: var(--dic-text);
+}
+
+body.dic-skin .wp-list-table thead th,
+body.dic-skin .wp-list-table thead td,
+body.dic-skin .wp-list-table tfoot th,
+body.dic-skin .wp-list-table tfoot td {
+	background: var(--dic-bg);
+	color: var(--dic-muted);
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	border-color: var(--dic-border);
+}
+
+body.dic-skin .wp-list-table th a,
+body.dic-skin .wp-list-table td a.row-title {
+	color: var(--dic-text);
+}
+
+body.dic-skin .widefat td,
+body.dic-skin .widefat th {
+	border-color: var(--dic-border);
+}
+
+body.dic-skin .striped > tbody > :nth-child(odd),
+body.dic-skin ul.striped > :nth-child(odd),
+body.dic-skin .alternate {
+	background-color: color-mix(in srgb, var(--dic-bg) 55%, var(--dic-surface));
+}
+
+/* Forms ------------------------------------------------------------------ */
+body.dic-skin input[type="text"],
+body.dic-skin input[type="search"],
+body.dic-skin input[type="email"],
+body.dic-skin input[type="url"],
+body.dic-skin input[type="password"],
+body.dic-skin input[type="number"],
+body.dic-skin input[type="date"],
+body.dic-skin select,
+body.dic-skin textarea {
+	background: var(--dic-surface);
+	color: var(--dic-text);
+	border: 1px solid var(--dic-border);
+	border-radius: 8px;
+	box-shadow: none;
+	min-height: 36px;
+}
+
+body.dic-skin input:focus,
+body.dic-skin select:focus,
+body.dic-skin textarea:focus {
+	border-color: var(--dic-brand);
+	box-shadow: 0 0 0 1px var(--dic-brand);
+}
+
+/* Buttons ---------------------------------------------------------------- */
+body.dic-skin .button,
+body.dic-skin .button-secondary {
+	background: var(--dic-surface);
+	color: var(--dic-text);
+	border: 1px solid var(--dic-border);
+	border-radius: 8px;
+	min-height: 36px;
+	padding: 0 14px;
+	line-height: 34px;
+	box-shadow: none;
+}
+
+body.dic-skin .button:hover {
+	background: var(--dic-bg);
+	color: var(--dic-text);
+	border-color: var(--dic-muted);
+}
+
+body.dic-skin .button-primary,
+body.dic-skin .button.button-primary {
+	background: var(--dic-brand);
+	border-color: var(--dic-brand);
+	color: #ffffff;
+}
+
+body.dic-skin .button-primary:hover,
+body.dic-skin .button-primary:focus {
+	background: var(--wp-admin-theme-color-darker-10);
+	border-color: var(--wp-admin-theme-color-darker-10);
+	color: #ffffff;
+}
+
+/* Notices & tabs --------------------------------------------------------- */
+body.dic-skin .notice,
+body.dic-skin div.updated,
+body.dic-skin div.error {
+	background: var(--dic-surface);
+	color: var(--dic-text);
+	border: 1px solid var(--dic-border);
+	border-left-width: 4px;
+	border-radius: 8px;
+	box-shadow: var(--dic-shadow);
+}
+
+body.dic-skin .notice-success { border-left-color: #16a34a; }
+body.dic-skin .notice-warning { border-left-color: #d97706; }
+body.dic-skin .notice-error { border-left-color: #dc2626; }
+body.dic-skin .notice-info { border-left-color: var(--dic-brand); }
+
+body.dic-skin .nav-tab {
+	background: transparent;
+	border-color: var(--dic-border);
+	color: var(--dic-muted);
+	border-radius: 8px 8px 0 0;
+}
+
+body.dic-skin .nav-tab-active,
+body.dic-skin .nav-tab-active:hover {
+	background: var(--dic-surface);
+	color: var(--dic-text);
+	border-bottom-color: var(--dic-surface);
+}
+
+body.dic-skin .subsubsub a {
+	color: var(--dic-muted);
+}
+
+body.dic-skin .subsubsub a.current {
+	color: var(--dic-text);
+	font-weight: 600;
+}
+
+body.dic-skin #wpfooter,
+body.dic-skin #wpfooter a {
+	color: var(--dic-muted);
+}
+
+/* Row actions, plugin rows, screen options, checkboxes ------------------- */
+body.dic-skin .row-actions,
+body.dic-skin .row-actions span,
+body.dic-skin .plugins .row-actions {
+	color: var(--dic-muted);
+}
+
+body.dic-skin .row-actions a,
+body.dic-skin .plugins .row-actions a {
+	color: var(--dic-link);
+}
+
+body.dic-skin .row-actions .delete a,
+body.dic-skin .row-actions .trash a,
+body.dic-skin .row-actions .spam a,
+body.dic-skin .plugins .row-actions .delete a,
+body.dic-skin .submitdelete {
+	color: var(--dic-danger);
+}
+
+body.dic-skin .plugins .active td,
+body.dic-skin .plugins .active th,
+body.dic-skin .plugins tr.active + tr.plugin-update-tr td {
+	background: color-mix(in srgb, var(--dic-brand) 9%, var(--dic-surface));
+	color: var(--dic-text);
+}
+
+body.dic-skin .plugins .inactive td,
+body.dic-skin .plugins .inactive th {
+	background: var(--dic-surface);
+	color: var(--dic-text);
+}
+
+body.dic-skin .plugins .active th.check-column {
+	border-left-color: var(--dic-brand);
+}
+
+body.dic-skin .plugins .plugin-title strong,
+body.dic-skin .plugins .plugin-version-author-uri {
+	color: var(--dic-text);
+}
+
+/* The description text rendered near-invisible in dark mode and no core rule in
+   list-tables/common/forms explains it, so force the colour here. */
+body.dic-skin .plugins .plugin-description,
+body.dic-skin .plugins .plugin-description p,
+body.dic-skin .plugins td.desc p,
+body.dic-skin .plugins .column-description p {
+	color: var(--dic-text) !important;
+	opacity: 1;
+}
+
+body.dic-skin #screen-meta,
+body.dic-skin #screen-meta-links .screen-meta-toggle {
+	background: var(--dic-surface);
+	border-color: var(--dic-border);
+}
+
+body.dic-skin #screen-meta-links .screen-meta-toggle .button {
+	background: var(--dic-surface);
+	color: var(--dic-text);
+	border-color: var(--dic-border);
+}
+
+body.dic-skin input[type="checkbox"],
+body.dic-skin input[type="radio"] {
+	background: var(--dic-surface);
+	border-color: var(--dic-muted);
+	box-shadow: none;
+}
+
+/* Checked state: core draws a white tick/dot, so the box itself must be filled. */
+body.dic-skin input[type="checkbox"]:checked,
+body.dic-skin input[type="radio"]:checked {
+	background: var(--dic-brand);
+	border-color: var(--dic-brand);
+}
+
+body.dic-skin input[type="radio"]:checked::before {
+	background-color: #ffffff;
+}
+
+body.dic-skin .page-title-action {
+	background: transparent;
+	color: var(--dic-link);
+	border-color: var(--dic-link);
+	border-radius: 8px;
+}
+
+/* Settings screens: labels, notice text, colour picker ------------------- */
+body.dic-skin .form-table th,
+body.dic-skin .form-table td,
+body.dic-skin .form-table label,
+body.dic-skin .form-wrap label,
+body.dic-skin fieldset legend {
+	color: var(--dic-text);
+}
+
+body.dic-skin .notice p,
+body.dic-skin .notice li,
+body.dic-skin .notice .notice-title,
+body.dic-skin div.updated p,
+body.dic-skin div.error p {
+	color: var(--dic-text);
+}
+
+body.dic-skin .wp-picker-container .wp-color-result.button,
+body.dic-skin .wp-picker-container .wp-color-result.button .wp-color-result-text {
+	background-color: var(--dic-surface);
+	color: var(--dic-text);
+	border-color: var(--dic-border);
+}
+
+body.dic-skin .wp-picker-container .wp-color-result.button {
+	border-radius: 8px;
+}
+
+body.dic-skin .wp-picker-container .wp-color-result.button .color-alpha {
+	border-radius: 7px 0 0 7px;
+}
+
+/* Dashboard status widget ------------------------------------------------ */
+.dic-greeting {
+	margin: 0 0 12px;
+	font-size: 15px;
+	font-weight: 600;
+}
+
+.dic-status-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.dic-status-table th,
+.dic-status-table td {
+	padding: 8px 0;
+	border-top: 1px solid var(--dic-border);
+	text-align: left;
+	font-size: 13px;
+}
+
+.dic-status-table th {
+	width: 38%;
+	color: var(--dic-muted);
+	font-weight: 500;
+}
+
+/* Reduced motion --------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+	body.dic-skin * {
+		transition: none !important;
+		animation: none !important;
+	}
+}

@@ -1,0 +1,125 @@
+/* Admin Skin — login screen. */
+
+:root {
+	--dic-brand: #2563eb;
+	/* The saved background colour (--dic-login-bg-light) only applies in light mode. */
+	--dic-login-bg: var(--dic-login-bg-light, #f3f4f6);
+	--dic-card: #ffffff;
+	--dic-text: #111827;
+	--dic-muted: #5b6472;
+	--dic-border: #e3e6eb;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--dic-login-bg: #0b0f17;
+		--dic-card: #131a26;
+		--dic-text: #e6e9ef;
+		--dic-muted: #9aa5b8;
+		--dic-border: #243044;
+		color-scheme: dark;
+	}
+}
+
+body.login {
+	background: var(--dic-login-bg);
+	color: var(--dic-text);
+	font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body.login h1 a {
+	width: 100%;
+	max-width: 240px;
+	height: 80px;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+body.login #loginform,
+body.login #lostpasswordform,
+body.login #registerform {
+	background: var(--dic-card);
+	border: 1px solid var(--dic-border);
+	border-radius: 14px;
+	box-shadow: 0 8px 30px rgba(16, 24, 40, 0.08);
+	padding: 28px;
+}
+
+body.login label {
+	color: var(--dic-text);
+	font-weight: 500;
+}
+
+body.login form .input,
+body.login input[type="text"],
+body.login input[type="password"] {
+	background: var(--dic-card);
+	color: var(--dic-text);
+	border: 1px solid var(--dic-border);
+	border-radius: 8px;
+	min-height: 44px;
+	font-size: 16px;
+	box-shadow: none;
+}
+
+body.login input[type="checkbox"] {
+	background: var(--dic-card);
+	border: 1px solid var(--dic-muted);
+	box-shadow: none;
+}
+
+/* Core draws a white tick, so the checked box must be filled. */
+body.login input[type="checkbox"]:checked {
+	background: var(--dic-brand);
+	border-color: var(--dic-brand);
+}
+
+body.login input:focus {
+	border-color: var(--dic-brand);
+	box-shadow: 0 0 0 1px var(--dic-brand);
+	outline: none;
+}
+
+body.login .button-primary {
+	background: var(--dic-brand);
+	border-color: var(--dic-brand);
+	color: #ffffff;
+	border-radius: 8px;
+	min-height: 44px;
+	padding: 0 20px;
+	text-shadow: none;
+	box-shadow: none;
+}
+
+body.login .button-primary:hover,
+body.login .button-primary:focus {
+	background: color-mix(in srgb, var(--dic-brand) 88%, #000);
+	border-color: color-mix(in srgb, var(--dic-brand) 88%, #000);
+}
+
+body.login #nav a,
+body.login #backtoblog a,
+body.login .privacy-policy-page-link a {
+	color: var(--dic-muted);
+}
+
+body.login #nav a:hover,
+body.login #backtoblog a:hover {
+	color: var(--dic-brand);
+}
+
+body.login .message,
+body.login .notice,
+body.login #login_error {
+	background: var(--dic-card);
+	color: var(--dic-text);
+	border: 1px solid var(--dic-border);
+	border-left: 4px solid var(--dic-brand);
+	border-radius: 8px;
+	box-shadow: none;
+}
+
+body.login #login_error {
+	border-left-color: #dc2626;
+}
